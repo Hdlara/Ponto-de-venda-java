@@ -2,27 +2,27 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 
-public class Pessoa implements Serializable {
+public class Pessoa extends Local implements Serializable  {
 	private static final long serialVersionUID = 1L;
 
-	private String nome;
-	private String email;
-	private String cpf;
-	private String cnpj;
-	private String telefone;
-	private String endereco;
+	public String nome;
+	public String email;
+	public String cpf;
+	public String cnpj;
+	public String telefone;
 	
 	public Pessoa() {
+		super();
 	}
 
-	public Pessoa(String nome, String email, String cpf, String cnpj, String telefone, String endereco) {
-		super();
+	public Pessoa(String nome, String email, String cpf, String cnpj, String telefone, String logradouro, String bairro, String cidade, String estado, String complemento, String numero,
+			String cep) {
+		super(logradouro, bairro, cidade, estado, complemento, numero, cep);
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.cnpj = cnpj;
 		this.telefone = telefone;
-		this.endereco = endereco;
 	}
 
 	public String getNome() {
@@ -65,13 +65,37 @@ public class Pessoa implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		return result;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		return true;
 	}
+	
 	
 	
 	

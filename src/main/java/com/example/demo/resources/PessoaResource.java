@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entities.Cliente;
 import com.example.demo.entities.Pessoa;
 
 @RestController
@@ -13,8 +14,12 @@ public class PessoaResource {
 
 	@GetMapping
 	public ResponseEntity<Pessoa> findall(){
-		Pessoa u = new Pessoa("Henrique", "Henriquediaslara@hotmail.com", "44985064807", "451753768", "19994589258", "rua cinco nova odessa sp");
-		return ResponseEntity.ok().body(u);
+		
+		
+		Cliente c = new Cliente(null, 23L , null, null, "henrique" , null, null, null, null, "Henriuqe", null, null, null, null);
+		return ResponseEntity.ok().body(c);
+		//Pessoa u = new Pessoa(null, null, null, null, null, null, null, null, null, null, null, null);
+		//return ResponseEntity.ok().body(u);
 		
 	
 	}

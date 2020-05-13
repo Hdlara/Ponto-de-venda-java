@@ -5,19 +5,19 @@ import java.io.Serializable;
 public class Local implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String logradouro;
-	private String bairro;
-	private String cidade;
-	private String estado;
-	private String complemento;
-	private int numero;
-	private int cep;
+	public String logradouro;
+	public String bairro;
+	public String cidade;
+	public String estado;
+	public String complemento;
+	public String numero;
+	public String cep;
 	
 	public Local() {
 	}
 
-	public Local(String logradouro, String bairro, String cidade, String estado, String complemento, int numero,
-			int cep) {
+	public Local(String logradouro, String bairro, String cidade, String estado, String complemento, String numero,
+			String cep) {
 		super();
 		this.logradouro = logradouro;
 		this.bairro = bairro;
@@ -68,19 +68,19 @@ public class Local implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	

@@ -1,12 +1,46 @@
 package com.example.demo.entities;
 
-public class Cliente {
-	
+import java.io.Serializable;
+
+public class Cliente extends Pessoa implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	private String password;
 	private long id;
 	
 	public Cliente(){		
 	}
+	
+	
+
+	public Cliente(String password,	long id, String nome, String email, String cpf, String cnpj, String telefone, String logradouro,
+			String bairro, String cidade, String estado, String complemento, String numero, String cep) {
+		super(nome, email, cpf, cnpj, telefone, logradouro, bairro, cidade, estado, complemento, numero, cep);
+		this.password = password;
+		this.id = id;
+	}
+
+	
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	
 
 	@Override
 	public int hashCode() {
