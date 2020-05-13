@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Local implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+
 	public String logradouro;
 	public String bairro;
 	public String cidade;

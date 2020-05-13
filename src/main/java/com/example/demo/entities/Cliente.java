@@ -2,11 +2,13 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 
+
 public class Cliente extends Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private String password;
 	private long id;
+	private String password;
+
 	
 	public Cliente(){		
 	}

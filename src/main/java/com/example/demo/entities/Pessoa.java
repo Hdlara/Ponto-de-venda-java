@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class Pessoa extends Local implements Serializable  {
 	private static final long serialVersionUID = 1L;
 
+
+	public Long id;
 	public String nome;
 	public String email;
 	public String cpf;
