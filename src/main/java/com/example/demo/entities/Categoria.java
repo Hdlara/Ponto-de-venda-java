@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
-public class Categoria {
+public abstract class Categoria {
+
 
 	private long idc;
 	private String departamento;

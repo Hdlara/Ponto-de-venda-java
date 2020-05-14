@@ -15,8 +15,7 @@ public class PessoaResource {
 	@GetMapping
 	public ResponseEntity<Pessoa> findall(){
 		
-		
-		Cliente c = new Cliente(null, 23L , null, null, "henrique" , null, null, null, null, "Henriuqe", null, null, null, null);
+		Cliente c = new Cliente(null, 0L, null, null, null, null, null, null, null, null, null, null, null, null);
 		return ResponseEntity.ok().body(c);
 		//Pessoa u = new Pessoa(null, null, null, null, null, null, null, null, null, null, null, null);
 		//return ResponseEntity.ok().body(u);
