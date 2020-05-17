@@ -1,11 +1,14 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente extends Pessoa implements Serializable{
@@ -15,6 +18,9 @@ public class Cliente extends Pessoa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String password;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Venda> vendas = new ArrayList<>();
 
 	
 	public Cliente(){		
@@ -22,15 +28,21 @@ public class Cliente extends Pessoa implements Serializable{
 	
 	
 
-	public Cliente(String password,	long id, String nome, String email, String cpf, String cnpj, String telefone, String logradouro,
-			String bairro, String cidade, String estado, String complemento, String numero, String cep) {
-		super(nome, email, cpf, cnpj, telefone, logradouro, bairro, cidade, estado, complemento, numero, cep);
+	public Cliente(Long id, String nome, String email, String cpf, String cnpj, String telefone, String logradouro,
+			String bairro, String cidade, String estado, String complemento, int numero, long cep, long id2,
+			String password) {
+		super(id, nome, email, cpf, cnpj, telefone, logradouro, bairro, cidade, estado, complemento, numero, cep);
+		id = id2;
 		this.password = password;
-		this.id = id;
 	}
 
+
 	
-	
+
+	public Long getId() {
+		return id;
+	}
+
 
 	public String getPassword() {
 		return password;
@@ -44,12 +56,16 @@ public class Cliente extends Pessoa implements Serializable{
 
 
 
-	public long getId() {
-		return id;
+	public List<Venda> getVendas() {
+		return vendas;
 	}
 
 
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -72,5 +88,6 @@ public class Cliente extends Pessoa implements Serializable{
 			return false;
 		return true;
 	}
+
 
 }
