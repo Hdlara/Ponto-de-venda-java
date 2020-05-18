@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.example.demo.entities.enums.StatusVenda;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +23,7 @@ public class Venda implements Serializable {
 	private long id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
+	private Integer statusVenda;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -31,10 +33,11 @@ public class Venda implements Serializable {
 	public Venda() {
 	}
 
-	public Venda(long id, Instant moment, Cliente client) {
+	public Venda(long id, Instant moment, StatusVenda statusVenda, Cliente client) {
 		super();
 		this.id = id;
 		this.moment = moment;
+		setStatusVenda(statusVenda);
 		this.client = client;
 	}
 
@@ -50,13 +53,19 @@ public class Venda implements Serializable {
 	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
+	
+	public StatusVenda getStatusVenda() {
+		return StatusVenda.valueOf(statusVenda);
+	}
+
+	public void setStatusVenda(StatusVenda statusVenda) {
+		if (statusVenda != null) {
+			this.statusVenda = statusVenda.getCode();
+		}
+	}
 
 	public Cliente getClient() {
 		return client;
-	}
-
-	public void setClient(Cliente client) {
-		this.client = client;
 	}
 
 	@Override
@@ -80,6 +89,6 @@ public class Venda implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	
 }

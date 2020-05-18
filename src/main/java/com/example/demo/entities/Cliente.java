@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tb_cliente")
 public class Cliente extends Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -21,23 +23,19 @@ public class Cliente extends Pessoa implements Serializable{
 	
 	@OneToMany(mappedBy = "client")
 	private List<Venda> vendas = new ArrayList<>();
-
 	
 	public Cliente(){		
 	}
 	
 	
-
-	public Cliente(Long id, String nome, String email, String cpf, String cnpj, String telefone, String logradouro,
-			String bairro, String cidade, String estado, String complemento, int numero, long cep, long id2,
-			String password) {
-		super(id, nome, email, cpf, cnpj, telefone, logradouro, bairro, cidade, estado, complemento, numero, cep);
+	
+	public Cliente(long id2, String password, Long id, String nome, String email, String cpf, String cnpj, String telefone) {
+		super(id, nome, email, cpf, cnpj, telefone);
 		id = id2;
 		this.password = password;
 	}
 
 
-	
 
 	public Long getId() {
 		return id;
@@ -60,6 +58,7 @@ public class Cliente extends Pessoa implements Serializable{
 		return vendas;
 	}
 
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
