@@ -22,20 +22,18 @@ public class Cliente extends Pessoa implements Serializable{
 	private String password;
 	
 	@OneToMany(mappedBy = "client")
-	private List<Venda> vendas = new ArrayList<>();
+	private List<Venda> vendas = new ArrayList<Venda>();
 	
 	public Cliente(){		
 	}
 	
-	
-	
+
 	public Cliente(long id2, String password, Long id, String nome, String email, String cpf, String cnpj, String telefone) {
 		super(id, nome, email, cpf, cnpj, telefone);
 		id = id2;
 		this.password = password;
 	}
-
-
+	
 
 	public Long getId() {
 		return id;
