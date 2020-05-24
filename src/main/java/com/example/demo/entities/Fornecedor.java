@@ -14,8 +14,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tb_cliente")
-public class Cliente extends Pessoa implements Serializable{
+@Table(name = "tb_Fornecedor")
+public class Fornecedor extends Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,13 +25,13 @@ public class Cliente extends Pessoa implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
-	private List<Venda> vendas = new ArrayList<Venda>();
+	private List<Compra> compras = new ArrayList<Compra>();
 	
-	public Cliente(){		
+	public Fornecedor(){		
 	}
 	
 
-	public Cliente(long id2, String password, Long id, String nome, String email, String cpf, String cnpj, String telefone) {
+	public Fornecedor(long id2, String password, Long id, String nome, String email, String cpf, String cnpj, String telefone) {
 		super(id, nome, email, cpf, cnpj, telefone);
 		id = id2;
 		this.password = password;
@@ -56,8 +56,8 @@ public class Cliente extends Pessoa implements Serializable{
 
 
 
-	public List<Venda> getVendas() {
-		return vendas;
+	public List<Compra> getCompras() {
+		return compras;
 	}
 
 	
@@ -84,7 +84,7 @@ public class Cliente extends Pessoa implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Fornecedor other = (Fornecedor) obj;
 		if (id != other.id)
 			return false;
 		return true;

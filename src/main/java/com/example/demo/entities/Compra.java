@@ -11,11 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.example.demo.entities.enums.StatusVenda;
+import com.example.demo.entities.enums.StatusCompra;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Venda implements Serializable {
+public class Compra implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -23,21 +23,21 @@ public class Venda implements Serializable {
 	private long id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
-	private Integer statusVenda;
+	private Integer statusCompra;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "client_id")
-	private Cliente client;
+	private Fornecedor client;
 
-	public Venda() {
+	public Compra() {
 	}
 
-	public Venda(long id, Instant moment, StatusVenda statusVenda, Cliente client) {
+	public Compra(long id, Instant moment, StatusCompra statusCompra, Fornecedor client) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		setStatusVenda(statusVenda);
+		setStatusCompra(statusCompra);
 		this.client = client;
 	}
 
@@ -54,21 +54,21 @@ public class Venda implements Serializable {
 		this.moment = moment;
 	}
 	
-	public StatusVenda getStatusVenda() {
-		return StatusVenda.valueOf(statusVenda);
+	public StatusCompra getStatusCompra() {
+		return StatusCompra.valueOf(statusCompra);
 	}
 
-	public void setStatusVenda(StatusVenda statusVenda) {
-		if (statusVenda != null) {
-			this.statusVenda = statusVenda.getCode();
+	public void setStatusCompra(StatusCompra statusCompra) {
+		if (statusCompra != null) {
+			this.statusCompra = statusCompra.getCode();
 		}
 	}
 
-	public Cliente getClient() {
+	public Fornecedor getClient() {
 		return client;
 	}
 
-	public void setClient(Cliente client) {
+	public void setClient(Fornecedor client) {
 		this.client = client;
 	}
 
@@ -88,7 +88,7 @@ public class Venda implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Venda other = (Venda) obj;
+		Compra other = (Compra) obj;
 		if (id != other.id)
 			return false;
 		return true;
