@@ -37,7 +37,6 @@ public class ItemCompra implements Serializable {
 	public void setCompra(Compra compra) {
 		id.setCompra(compra);
 	}
-	
 	public Produto getProduto() {
 		return id.getProduto();
 	}

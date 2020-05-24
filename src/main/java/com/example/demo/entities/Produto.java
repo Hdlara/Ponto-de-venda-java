@@ -11,9 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,20 +25,22 @@ public class Produto implements Serializable{
 	private int quantidade;
 	private Double vcompra;
 	private Double vvenda;
-	
+
 	@ManyToMany
-	@JoinTable(name = "tb_produto_categoria", 
-	joinColumns = @JoinColumn(name = "produto_id"),
-	inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
-	
+
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemVenda> itemsv = new HashSet<>();
+
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemCompra> itemsc = new HashSet<>();
+
 	public Produto() {
 		super();
 	}
 
-
-	public Produto(long id, String nome, int quantidade, Double vcompra,
-			Double vvenda) {
+	public Produto(long id, String nome, int quantidade, Double vcompra, Double vvenda) {
 		this.id = id;
 		this.nome = nome;
 		this.quantidade = quantidade;
@@ -43,55 +48,63 @@ public class Produto implements Serializable{
 		this.vvenda = vvenda;
 	}
 
-
 	public long getIdp() {
 		return id;
 	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public int getQuantidade() {
 		return quantidade;
 	}
 
-
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-
 
 	public Double getVcompra() {
 		return vcompra;
 	}
 
-
 	public void setVcompra(Double vcompra) {
 		this.vcompra = vcompra;
 	}
-
 
 	public Double getVvenda() {
 		return vvenda;
 	}
 
-
 	public void setVvenda(Double vvenda) {
 		this.vvenda = vvenda;
 	}
 
-	public  Set<Categoria> getCategoria(){
-		return	categorias; 
+	public Set<Categoria> getCategoria() {
+		return categorias;
 	}
-	
+	@JsonIgnore
+	public Set<Venda> getVendas() {
+		Set<Venda> set = new HashSet<>();
+		for (ItemVenda x : itemsv) {
+			set.add(x.getVenda());
+		}
+		return set;
+
+	}
+	@JsonIgnore
+	public Set<Compra> getCompras() {
+		Set<Compra> set = new HashSet<>();
+		for (ItemCompra y : itemsc) {
+			set.add(y.getCompra());
+		}
+		return set;
+
+	}
 
 	@Override
 	public int hashCode() {
@@ -100,7 +113,6 @@ public class Produto implements Serializable{
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -116,7 +128,4 @@ public class Produto implements Serializable{
 		return true;
 	}
 
-
-	
-	
 }

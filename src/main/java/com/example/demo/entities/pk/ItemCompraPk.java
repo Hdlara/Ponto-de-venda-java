@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 import com.example.demo.entities.Compra;
 import com.example.demo.entities.Produto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Embeddable
 public class ItemCompraPk implements Serializable {
@@ -17,7 +18,7 @@ public class ItemCompraPk implements Serializable {
 	@JoinColumn(name = "compra_id")
 	private Compra compra;
 	@ManyToOne
-	@JoinColumn(name = "product_id")
+	@JoinColumn(name = "produto_id")
 	private Produto produto;
 	
 	
@@ -27,6 +28,7 @@ public class ItemCompraPk implements Serializable {
 	public void setCompra(Compra compra) {
 		this.compra = compra;
 	}
+	@JsonIgnore
 	public Produto getProduto() {
 		return produto;
 	}
