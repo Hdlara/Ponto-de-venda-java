@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import com.example.demo.entities.Categoria;
 import com.example.demo.entities.Cliente;
 import com.example.demo.entities.Compra;
 import com.example.demo.entities.Fornecedor;
+import com.example.demo.entities.ItemCompra;
+import com.example.demo.entities.ItemVenda;
 import com.example.demo.entities.Produto;
 import com.example.demo.entities.Testeee;
 import com.example.demo.entities.Venda;
@@ -22,6 +23,8 @@ import com.example.demo.repositories.CategoriaRepository;
 import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.repositories.CompraRepository;
 import com.example.demo.repositories.FornecedorRepository;
+import com.example.demo.repositories.ItemCompraRepository;
+import com.example.demo.repositories.ItemVendaRepository;
 import com.example.demo.repositories.ProdutoRepository;
 import com.example.demo.repositories.TesteeeRepository;
 import com.example.demo.repositories.VendaRepository;
@@ -55,6 +58,12 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private ItemCompraRepository itemCompraRepository;
+	
+	@Autowired
+	private ItemVendaRepository itemVendaRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -117,5 +126,20 @@ public class TestConfig implements CommandLineRunner {
 		p5.getCategoria().add(cat3);
 		
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));		
+
+		ItemCompra ic1 = new ItemCompra(c1, p1, 2, p1.getVcompra());
+		ItemCompra ic2 = new ItemCompra(c1, p3, 1, p3.getVcompra());
+		ItemCompra ic3 = new ItemCompra(c2, p3, 5, p3.getVcompra());
+		ItemCompra ic4 = new ItemCompra(c3, p5, 2, p5.getVcompra());
+		
+		ItemVenda iv1 = new ItemVenda(v1, p1, 3, p1.getVvenda());
+		ItemVenda iv2 = new ItemVenda(v1, p3, 9, p3.getVvenda());
+		ItemVenda iv3 = new ItemVenda(v2, p3, 7, p3.getVvenda());
+		ItemVenda iv4 = new ItemVenda(v3, p5, 2, p5.getVvenda());
+		
+		itemCompraRepository.saveAll(Arrays.asList(ic1, ic2, ic3, ic4));
+		itemVendaRepository.saveAll(Arrays.asList(iv1, iv2, iv3, iv4));
+		
 	}
+	
 }

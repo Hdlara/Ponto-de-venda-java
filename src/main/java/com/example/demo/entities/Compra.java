@@ -2,6 +2,8 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.example.demo.entities.enums.StatusCompra;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -30,6 +33,10 @@ public class Compra implements Serializable {
 	@JoinColumn(name = "client_id")
 	private Fornecedor client;
 
+	@OneToMany(mappedBy = "id.compra")
+	private Set<ItemCompra> itemsc = new HashSet<>();
+	
+	
 	public Compra() {
 	}
 
@@ -70,6 +77,10 @@ public class Compra implements Serializable {
 
 	public void setClient(Fornecedor client) {
 		this.client = client;
+	}
+	
+	public Set<ItemCompra> getItemsc() {
+		return itemsc;
 	}
 
 	@Override

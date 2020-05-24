@@ -2,6 +2,8 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.example.demo.entities.enums.StatusVenda;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -30,6 +33,9 @@ public class Venda implements Serializable {
 	@JoinColumn(name = "client_id")
 	private Cliente client;
 
+	@OneToMany(mappedBy = "id.venda")
+	private Set<ItemVenda> itemsv = new HashSet<>();
+	
 	public Venda() {
 	}
 
@@ -72,6 +78,10 @@ public class Venda implements Serializable {
 		this.client = client;
 	}
 
+	public Set<ItemVenda> getItemsv() {
+		return itemsv;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
