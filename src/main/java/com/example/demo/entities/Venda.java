@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.example.demo.entities.enums.StatusVenda;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -35,6 +36,9 @@ public class Venda implements Serializable {
 
 	@OneToMany(mappedBy = "id.venda")
 	private Set<ItemVenda> itemsv = new HashSet<>();
+	
+	@OneToOne (mappedBy = "venda", cascade = CascadeType.ALL)
+	private Pagamento pagamento;
 	
 	public Venda() {
 	}
@@ -82,6 +86,14 @@ public class Venda implements Serializable {
 		return itemsv;
 	}
 	
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

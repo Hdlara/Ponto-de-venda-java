@@ -14,6 +14,7 @@ import com.example.demo.entities.Compra;
 import com.example.demo.entities.Fornecedor;
 import com.example.demo.entities.ItemCompra;
 import com.example.demo.entities.ItemVenda;
+import com.example.demo.entities.Pagamento;
 import com.example.demo.entities.Produto;
 import com.example.demo.entities.Testeee;
 import com.example.demo.entities.Venda;
@@ -35,36 +36,34 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	private FornecedorRepository fornecedorRepository;
 
 	@Autowired
 	private VendaRepository vendaRepository;
-	
+
 	@Autowired
 	private CompraRepository compraRepository;
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
-	
+
 	@Autowired
 	private TesteeeRepository testeeeRepository;
-	
-	
-	//@Autowired
-	//private LocalRepository localRepository;
-	
+
+	// @Autowired
+	// private LocalRepository localRepository;
+
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
+
 	@Autowired
 	private ItemCompraRepository itemCompraRepository;
-	
+
 	@Autowired
 	private ItemVendaRepository itemVendaRepository;
-	
+
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -139,7 +138,16 @@ public class TestConfig implements CommandLineRunner {
 		
 		itemCompraRepository.saveAll(Arrays.asList(ic1, ic2, ic3, ic4));
 		itemVendaRepository.saveAll(Arrays.asList(iv1, iv2, iv3, iv4));
+	
+		Pagamento pai1 = new Pagamento(0L, Instant.parse("2019-06-20T21:53:07Z"), v1);
+		Pagamento pai2 = new Pagamento(0L, Instant.parse("2019-08-20T20:53:07Z"), v3);
+		Pagamento pai3 = new Pagamento(0L, Instant.parse("2019-07-22T16:21:22Z"), v4);
+		v1.setPagamento(pai1);
+		v4.setPagamento(pai2);
+		v3.setPagamento(pai3);
+		
+		vendaRepository.saveAll(Arrays.asList(v1, v3, v4));
 		
 	}
-	
+
 }
