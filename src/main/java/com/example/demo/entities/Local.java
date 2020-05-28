@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tb_endereco")
 public class Local implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,12 +24,15 @@ public class Local implements Serializable {
 	public int numero;
 	public long cep;
 	
+	//@OneToOne
+	//@MapsId
+	//private Cliente cliente;
 	
 	public Local() {
 	}
 
 	public Local(Long id3, String logradouro, String bairro, String cidade, String estado, String complemento,
-			int numero, long cep) {
+			int numero, long cep, Cliente cliente) {
 		super();
 		this.id = id3;
 		this.logradouro = logradouro;
@@ -37,6 +42,7 @@ public class Local implements Serializable {
 		this.complemento = complemento;
 		this.numero = numero;
 		this.cep = cep;
+	//	this.cliente = cliente;
 	}
 
 	public Long getId() {
@@ -103,6 +109,15 @@ public class Local implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+
+	/*public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}*/
 
 	@Override
 	public int hashCode() {

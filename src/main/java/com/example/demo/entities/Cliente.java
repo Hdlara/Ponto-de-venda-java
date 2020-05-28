@@ -26,6 +26,9 @@ public class Cliente extends Pessoa implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Venda> vendas = new ArrayList<Venda>();
+
+	//@OneToOne (mappedBy = "cliente", cascade = CascadeType.ALL)
+	//private Local local;
 	
 	public Cliente(){		
 	}
@@ -38,7 +41,6 @@ public class Cliente extends Pessoa implements Serializable{
 
 	}
 	
-
 	public Long getId() {
 		return id;
 	}
@@ -59,14 +61,19 @@ public class Cliente extends Pessoa implements Serializable{
 	public List<Venda> getVendas() {
 		return vendas;
 	}
-
 	
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	/*public Local getLocal() {
+		return local;
 	}
 
 
+	public void setLocal(Local local) {
+		this.local = local;
+	}*/
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public int hashCode() {

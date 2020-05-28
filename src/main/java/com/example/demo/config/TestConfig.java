@@ -14,6 +14,7 @@ import com.example.demo.entities.Compra;
 import com.example.demo.entities.Fornecedor;
 import com.example.demo.entities.ItemCompra;
 import com.example.demo.entities.ItemVenda;
+import com.example.demo.entities.Local;
 import com.example.demo.entities.Pagamento;
 import com.example.demo.entities.Produto;
 import com.example.demo.entities.Testeee;
@@ -75,16 +76,11 @@ public class TestConfig implements CommandLineRunner {
 		
 		Cliente u1 = new Cliente(0L, "Henrique", 0L, "João", "ajskaj@hotmail.com", "445697946", "654564", 
 		"19994589258");
-		//0L, "RUA CINCO", "VILA AZENHA", "NOVA ODESSA", "SÃO PAULO", null, 40, 45464564654L
-				
 		Cliente u2 = new Cliente(0L, "Jordão ",0L, "Henrique Dias ", "Henriquediaslara@Hotmail.com ", "44985064807 ",
-				"449850312645 ", "994589258 ");
-		//0L, "RUA HENRIQUE ", "CENTRO ", "AMERICANA ", "RIO DE JANEIRO","só por colocar ", 78, 7897987987L
-		
+				"449850312645 ", "994589258 ");		
 		Cliente u3 = new Cliente( 0L, "Leo", 0L , "NAKSAN", "HNAKSI@Hotmail.com", "21231654148",
 				"23156498", "654654");
-		//, 0L, "RUA oliveira", "jd mirandola", "suruguai", "oeste",null, 71, 78979567L
-		
+				
 		Fornecedor f1 = new Fornecedor(0L, "lksxo", 0L, "abcextintores", "abcgmail.com", null, "546465456", "xx-xxxx-xxxx");
 		Fornecedor f2 = new Fornecedor(0L, "abcdls", 0L, "eiditos", "oidoicgmail.com", null, "789798798", "xx-64654-5646");
 		Fornecedor f3 = new Fornecedor(0L, "lala", 0L, "akxja", "lalalgmail.com", null, "123123132", "xx-asas-asas");
@@ -116,6 +112,16 @@ public class TestConfig implements CommandLineRunner {
 		vendaRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6));
 		fornecedorRepository.saveAll(Arrays.asList(f1, f2, f3));
 		compraRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		/*Local l1 = new Local(0L, "RUA CINCO", "VILA AZENHA", "NOVA ODESSA", "SÃO PAULO", null, 40, 45464564654L, u1);
+		Local l2 = new Local(0L, "RUA oliveira", "jd mirandola", "suruguai", "oeste",null, 71, 78979567L, u2);
+		Local l3 = new Local(0L, "RUA HENRIQUE ", "CENTRO ", "AMERICANA ", "RIO DE JANEIRO","só por colocar ", 78, 7897987987L, u3);
+
+		u1.setLocal(l1);
+		u2.setLocal(l2);
+		u3.setLocal(l3);*/
+		
+		clienteRepository.saveAll(Arrays.asList(u1, u2, u3));
 		
 		p1.getCategoria().add(cat3);
 		p2.getCategoria().add(cat1);

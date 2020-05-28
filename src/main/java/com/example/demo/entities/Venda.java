@@ -93,6 +93,14 @@ public class Venda implements Serializable {
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
+	
+	public double getTotal() {
+		double som = 0;
+		for(ItemVenda x : itemsv ) {
+			som += x.getSubTot();		
+		}
+		return som;
+	}
 
 	@Override
 	public int hashCode() {

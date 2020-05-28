@@ -22,6 +22,8 @@ public abstract class Pessoa implements Serializable{
 	public String cnpj;
 	public String telefone;
 	
+
+	
 	public Pessoa() {
 	}
 
@@ -80,7 +82,9 @@ public abstract class Pessoa implements Serializable{
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
+	}	
+
+
 
 
 	@Override
