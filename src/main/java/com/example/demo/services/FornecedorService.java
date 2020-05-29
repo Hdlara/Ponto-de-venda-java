@@ -24,4 +24,13 @@ public class FornecedorService {
 		Optional<Fornecedor> obj = repository.findById(id);
 		return obj.get(); 
 	}
+	
+
+	public Fornecedor insert(Fornecedor obj) {
+		return repository.save(obj);
+	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 }
