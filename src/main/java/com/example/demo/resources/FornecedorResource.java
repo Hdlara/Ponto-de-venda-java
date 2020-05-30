@@ -29,20 +29,19 @@ public class FornecedorResource {
 		List<Fornecedor> list = service.findAll();
 
 		return ResponseEntity.ok().body(list);
-	
-	
 	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Fornecedor> findById(@PathVariable long id){
 		Fornecedor obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
 	@PostMapping
 	public ResponseEntity<Fornecedor> insert(@RequestBody Fornecedor obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); 
 		return ResponseEntity.created(uri).body(obj);
-
 	}
 	
 	@DeleteMapping(value = "/{id}")
