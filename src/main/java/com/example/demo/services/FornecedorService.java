@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.Cliente;
 import com.example.demo.entities.Fornecedor;
 import com.example.demo.repositories.FornecedorRepository;
 
@@ -33,4 +34,16 @@ public class FornecedorService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public Fornecedor update(Long id, Fornecedor obj) {
+		Fornecedor entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(Fornecedor entity, Fornecedor obj) {
+		entity.setNome(obj.getNome());
+		entity.setEmail(obj.getEmail());
+		entity.setTelefone(obj.getTelefone());
+	}	
 }
