@@ -6,43 +6,42 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entities.Fornecedor;
-import com.example.demo.repositories.FornecedorRepository;
+import com.example.demo.entities.Funcionario;
+import com.example.demo.repositories.FuncionarioRepository;
 
 @Service
-public class FornecedorService {
+public class FuncionarioService {
 	
 	@Autowired
-	private FornecedorRepository repository;
+	private FuncionarioRepository repository;
 	
 	
-	public List<Fornecedor> findAll(){
+	public List<Funcionario> findAll(){
 		return repository.findAll();
 	}
 
-	public Fornecedor findById(Long id) {
-		Optional<Fornecedor> obj = repository.findById(id);
+	public Funcionario findById(Long id) {
+		Optional<Funcionario> obj = repository.findById(id);
 		return obj.get(); 
 	}
 	
-
-	public Fornecedor insert(Fornecedor obj) {
+	public Funcionario insert(Funcionario obj) {
 		return repository.save(obj);
 	}
 	
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
-	
-	public Fornecedor update(Long id, Fornecedor obj) {
-		Fornecedor entity = repository.getOne(id);
+
+	public Funcionario update(Long id, Funcionario obj) {
+		Funcionario entity = repository.getOne(id);
 		updateData(entity, obj);
 		return repository.save(entity);
 	}
 
-	private void updateData(Fornecedor entity, Fornecedor obj) {
+	private void updateData(Funcionario entity, Funcionario obj) {
 		entity.setNome(obj.getNome());
 		entity.setEmail(obj.getEmail());
 		entity.setTelefone(obj.getTelefone());
-	}	
+	}
 }

@@ -34,6 +34,10 @@ public class Venda implements Serializable {
 	@JoinColumn(name = "client_id")
 	private Cliente client;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "funcionari_id")
+	private Funcionario funcionari;
+
 	@OneToMany(mappedBy = "id.venda")
 	private Set<ItemVenda> itemsv = new HashSet<>();
 	
@@ -43,12 +47,13 @@ public class Venda implements Serializable {
 	public Venda() {
 	}
 
-	public Venda(long id, Instant moment, StatusVenda statusVenda, Cliente client) {
+	public Venda(long id, Instant moment, StatusVenda statusVenda, Cliente client, Funcionario funcionari) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		setStatusVenda(statusVenda);
 		this.client = client;
+		this.funcionari = funcionari;
 	}
 
 	public long getId() {
@@ -80,6 +85,14 @@ public class Venda implements Serializable {
 
 	public void setClient(Cliente client) {
 		this.client = client;
+	}
+
+	public Funcionario getFuncionari() {
+		return funcionari;
+	}
+
+	public void setFuncionari(Funcionario funcionari) {
+		this.funcionari = funcionari;
 	}
 
 	public Set<ItemVenda> getItemsv() {

@@ -15,34 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.demo.entities.Fornecedor;
-import com.example.demo.services.FornecedorService;
+import com.example.demo.entities.Funcionario;
+import com.example.demo.services.FuncionarioService;
 
 @RestController
-@RequestMapping(value = "/fornecedores")
-public class FornecedorResource {
+@RequestMapping(value = "/funcionarios")
+public class FuncionarioResource {
 	
 	@Autowired
-	private FornecedorService service; 
+	private FuncionarioService service; 
 	
 	@GetMapping
-	public ResponseEntity<List<Fornecedor>> findall(){
-		List<Fornecedor> list = service.findAll();
+	public ResponseEntity<List<Funcionario>> findall(){
+		List<Funcionario> list = service.findAll();
 
 		return ResponseEntity.ok().body(list);
-	}
 	
+	
+	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Fornecedor> findById(@PathVariable long id){
-		Fornecedor obj = service.findById(id);
+	public ResponseEntity<Funcionario> findById(@PathVariable long id){
+		Funcionario obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Fornecedor> insert(@RequestBody Fornecedor obj){
+	public ResponseEntity<Funcionario> insert(@RequestBody Funcionario obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); 
 		return ResponseEntity.created(uri).body(obj);
+
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -52,8 +54,9 @@ public class FornecedorResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Fornecedor> update(@PathVariable Long id, @RequestBody Fornecedor obj){
+	public ResponseEntity<Funcionario> update(@PathVariable Long id, @RequestBody Funcionario obj){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
+	
 }

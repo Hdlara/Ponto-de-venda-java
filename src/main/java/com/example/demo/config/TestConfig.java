@@ -12,9 +12,9 @@ import com.example.demo.entities.Categoria;
 import com.example.demo.entities.Cliente;
 import com.example.demo.entities.Compra;
 import com.example.demo.entities.Fornecedor;
+import com.example.demo.entities.Funcionario;
 import com.example.demo.entities.ItemCompra;
 import com.example.demo.entities.ItemVenda;
-import com.example.demo.entities.Local;
 import com.example.demo.entities.Pagamento;
 import com.example.demo.entities.Produto;
 import com.example.demo.entities.Testeee;
@@ -25,6 +25,7 @@ import com.example.demo.repositories.CategoriaRepository;
 import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.repositories.CompraRepository;
 import com.example.demo.repositories.FornecedorRepository;
+import com.example.demo.repositories.FuncionarioRepository;
 import com.example.demo.repositories.ItemCompraRepository;
 import com.example.demo.repositories.ItemVendaRepository;
 import com.example.demo.repositories.ProdutoRepository;
@@ -40,6 +41,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private FornecedorRepository fornecedorRepository;
+	
+	@Autowired
+	private FuncionarioRepository funcionarioRepository;
 
 	@Autowired
 	private VendaRepository vendaRepository;
@@ -85,16 +89,23 @@ public class TestConfig implements CommandLineRunner {
 		Fornecedor f2 = new Fornecedor(0L, "abcdls", 0L, "eiditos", "oidoicgmail.com", null, "789798798", "xx-64654-5646");
 		Fornecedor f3 = new Fornecedor(0L, "lala", 0L, "akxja", "lalalgmail.com", null, "123123132", "xx-asas-asas");
 		
-		Compra c1 = new Compra(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusCompra.ENTREGE, f1);
-		Compra c2 = new Compra(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusCompra.AGUARDANDO_ENVIO, f2);
-		Compra c3 = new Compra(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusCompra.ENTREGE, f3);
+		Funcionario fu1 = new Funcionario(0L, "Ivan", 0L, "ivan", "ivanlala@hotmail.com", "985326548", "aixurays", 
+				"5645646");
+		Funcionario fu2 = new Funcionario(0L, "jess", 0L, "jessica", "jessica@hotmail.com", "546165", "torzeta", 
+				"321879");
+		Funcionario fu3 = new Funcionario(0L, "bela", 0L, "izabela", "izabela@hotmail.com", "3126548", "xablau", 
+				"321654");
 		
-		Venda v1 = new Venda(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusVenda.ENTREGE, u1);
-		Venda v2 = new Venda(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2);
-		Venda v3 = new Venda(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusVenda.ENTREGE, u3);
-		Venda v4 = new Venda(4L, Instant.parse("2019-08-20T19:53:07Z"), StatusVenda.ENTREGE, u3);
-		Venda v5 = new Venda(5L, Instant.parse("2019-11-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2);
-		Venda v6 = new Venda(6L, Instant.parse("2019-07-22T15:21:22Z"), StatusVenda.CANCELADO, u1);
+		Compra c1 = new Compra(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusCompra.ENTREGE, f1, fu2);
+		Compra c2 = new Compra(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusCompra.AGUARDANDO_ENVIO, f2, fu2);
+		Compra c3 = new Compra(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusCompra.ENTREGE, f3, fu3);
+		
+		Venda v1 = new Venda(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusVenda.ENTREGE, u1, fu1);
+		Venda v2 = new Venda(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2, fu1);
+		Venda v3 = new Venda(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusVenda.ENTREGE, u3, fu1);
+		Venda v4 = new Venda(4L, Instant.parse("2019-08-20T19:53:07Z"), StatusVenda.ENTREGE, u3, fu1);
+		Venda v5 = new Venda(5L, Instant.parse("2019-11-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2, fu1);
+		Venda v6 = new Venda(6L, Instant.parse("2019-07-22T15:21:22Z"), StatusVenda.CANCELADO, u1, fu1);
 		
 		Categoria cat1 = new Categoria(0L, "Electronics");
 		Categoria cat2 = new Categoria(0L, "Books");
@@ -112,6 +123,7 @@ public class TestConfig implements CommandLineRunner {
 		vendaRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6));
 		fornecedorRepository.saveAll(Arrays.asList(f1, f2, f3));
 		compraRepository.saveAll(Arrays.asList(c1, c2, c3));
+		funcionarioRepository.saveAll(Arrays.asList(fu1, fu2, fu3));
 		
 		/*Local l1 = new Local(0L, "RUA CINCO", "VILA AZENHA", "NOVA ODESSA", "SÃO PAULO", null, 40, 45464564654L, u1);
 		Local l2 = new Local(0L, "RUA oliveira", "jd mirandola", "suruguai", "oeste",null, 71, 78979567L, u2);

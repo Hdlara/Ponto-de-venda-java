@@ -30,8 +30,12 @@ public class Compra implements Serializable {
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "client_id")
-	private Fornecedor client;
+	@JoinColumn(name = "fornecedor_id")
+	private Fornecedor fornecedo;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "funcionario_id")
+	private Funcionario funcionari;
 
 	@OneToMany(mappedBy = "id.compra")
 	private Set<ItemCompra> itemsc = new HashSet<>();
@@ -40,12 +44,13 @@ public class Compra implements Serializable {
 	public Compra() {
 	}
 
-	public Compra(long id, Instant moment, StatusCompra statusCompra, Fornecedor client) {
+	public Compra(long id, Instant moment, StatusCompra statusCompra, Fornecedor fornecedo, Funcionario funcionari) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		setStatusCompra(statusCompra);
-		this.client = client;
+		this.fornecedo = fornecedo;
+		this.funcionari = funcionari;
 	}
 
 	public long getId() {
@@ -71,12 +76,20 @@ public class Compra implements Serializable {
 		}
 	}
 
-	public Fornecedor getClient() {
-		return client;
+	public Fornecedor getFornecedo() {
+		return fornecedo;
 	}
 
-	public void setClient(Fornecedor client) {
-		this.client = client;
+	public void setFornecedo(Fornecedor fornecedo) {
+		this.fornecedo = fornecedo;
+	}
+	
+	public Funcionario getFuncioanri() {
+		return funcionari;
+	}
+
+	public void setFuncionario(Funcionario funcionari) {
+		this.funcionari = funcionari;
 	}
 	
 	public Set<ItemCompra> getItemsc() {
