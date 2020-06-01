@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.example.demo.entities.enums.StatusCompra;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,12 +35,14 @@ public class Compra implements Serializable {
 	private Fornecedor fornecedo;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "funcionario_id")
+	@JoinColumn(name = "funcionari_id")
 	private Funcionario funcionari;
 
 	@OneToMany(mappedBy = "id.compra")
 	private Set<ItemCompra> itemsc = new HashSet<>();
 	
+	@OneToOne (mappedBy = "compra", cascade = CascadeType.ALL)
+	private PagamentoC pagamentoC;
 	
 	public Compra() {
 	}
@@ -95,6 +98,23 @@ public class Compra implements Serializable {
 	public Set<ItemCompra> getItemsc() {
 		return itemsc;
 	}
+	
+	public PagamentoC getPagamentoC() {
+		return pagamentoC;
+	}
+
+	public void setPagamentoC(PagamentoC pagamentoC) {
+		this.pagamentoC = pagamentoC;
+	}
+	
+	public double getTotal() {
+		double som = 0;
+		for(ItemCompra x : itemsc ) {
+			som += x.getSubTot();		
+		}
+		return som;
+	}
+
 
 	@Override
 	public int hashCode() {

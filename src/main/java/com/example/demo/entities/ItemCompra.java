@@ -60,6 +60,10 @@ public class ItemCompra implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public double getSubTot() {
+		return price * quantidade;
+	}
 
 	@Override
 	public int hashCode() {

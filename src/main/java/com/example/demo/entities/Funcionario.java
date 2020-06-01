@@ -31,6 +31,7 @@ public class Funcionario extends Pessoa implements Serializable{
 	@OneToMany(mappedBy = "funcionari")
 	private List<Compra> compras = new ArrayList<Compra>();
 	
+	
 	public Funcionario(){		
 	}
 	
@@ -62,6 +63,10 @@ public class Funcionario extends Pessoa implements Serializable{
 	
 	public List<Compra> getCompras() {
 		return compras;
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

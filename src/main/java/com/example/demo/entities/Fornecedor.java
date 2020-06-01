@@ -29,7 +29,6 @@ public class Fornecedor extends Pessoa implements Serializable{
 	
 	public Fornecedor(){		
 	}
-	
 
 	public Fornecedor(long id2, String password, Long id, String nome, String email, String cpf, String cnpj, String telefone) {
 		super(id, nome, email, cpf, cnpj, telefone);
@@ -38,16 +37,13 @@ public class Fornecedor extends Pessoa implements Serializable{
 
 	}
 	
-
 	public Long getId() {
 		return id;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 
 	public void setPassword(String password) {
@@ -55,18 +51,13 @@ public class Fornecedor extends Pessoa implements Serializable{
 	}
 
 
-
 	public List<Compra> getCompras() {
 		return compras;
 	}
-
 	
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-
 
 	@Override
 	public int hashCode() {

@@ -16,6 +16,7 @@ import com.example.demo.entities.Funcionario;
 import com.example.demo.entities.ItemCompra;
 import com.example.demo.entities.ItemVenda;
 import com.example.demo.entities.Pagamento;
+import com.example.demo.entities.PagamentoC;
 import com.example.demo.entities.Produto;
 import com.example.demo.entities.Testeee;
 import com.example.demo.entities.Venda;
@@ -99,13 +100,16 @@ public class TestConfig implements CommandLineRunner {
 		Compra c1 = new Compra(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusCompra.ENTREGE, f1, fu2);
 		Compra c2 = new Compra(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusCompra.AGUARDANDO_ENVIO, f2, fu2);
 		Compra c3 = new Compra(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusCompra.ENTREGE, f3, fu3);
-		
+		/*Compra c4 = new Compra(0L, Instant.parse("2019-08-20T19:53:07Z"), StatusCompra.ENTREGE, u3, fu1);
+		Compra c5 = new Compra(0L, Instant.parse("2019-11-21T03:42:10Z"), StatusCompra.AGUARDANDO_ENVIO, u2, fu1);
+		Compra c6 = new Compra(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusCompra.AGUARDANDO_ENVIO, u1, fu1);*/		
+				
 		Venda v1 = new Venda(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusVenda.ENTREGE, u1, fu1);
 		Venda v2 = new Venda(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2, fu1);
 		Venda v3 = new Venda(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusVenda.ENTREGE, u3, fu1);
-		Venda v4 = new Venda(4L, Instant.parse("2019-08-20T19:53:07Z"), StatusVenda.ENTREGE, u3, fu1);
-		Venda v5 = new Venda(5L, Instant.parse("2019-11-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2, fu1);
-		Venda v6 = new Venda(6L, Instant.parse("2019-07-22T15:21:22Z"), StatusVenda.CANCELADO, u1, fu1);
+		Venda v4 = new Venda(0L, Instant.parse("2019-08-20T19:53:07Z"), StatusVenda.ENTREGE, u3, fu1);
+		Venda v5 = new Venda(0L, Instant.parse("2019-11-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2, fu1);
+		Venda v6 = new Venda(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusVenda.CANCELADO, u1, fu1);
 		
 		Categoria cat1 = new Categoria(0L, "Electronics");
 		Categoria cat2 = new Categoria(0L, "Books");
@@ -163,8 +167,16 @@ public class TestConfig implements CommandLineRunner {
 		v1.setPagamento(pai1);
 		v4.setPagamento(pai2);
 		v3.setPagamento(pai3);
-		
+															
+		/*PagamentoC paic1 = new PagamentoC(0L, Instant.parse("2020-06-20T30:53:07Z"), c1);
+		PagamentoC paic2 = new PagamentoC(0L, Instant.parse("2020-08-23T16:53:07Z"), c3);
+		PagamentoC paic3 = new PagamentoC(0L, Instant.parse("2020-07-22T10:21:22Z"), c2);
+		c1.setPagamentoC(paic1);
+		c2.setPagamentoC(paic2);
+		c3.setPagamentoC(paic3);
+		*/
 		vendaRepository.saveAll(Arrays.asList(v1, v3, v4));
+		//compraRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
 	}
 

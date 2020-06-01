@@ -99,8 +99,8 @@ public class Produto implements Serializable {
 	@JsonIgnore
 	public Set<Compra> getCompras() {
 		Set<Compra> set = new HashSet<>();
-		for (ItemCompra y : itemsc) {
-			set.add(y.getCompra());
+		for (ItemCompra x : itemsc) {
+			set.add(x.getCompra());
 		}
 		return set;
 
