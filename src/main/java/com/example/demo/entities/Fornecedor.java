@@ -23,9 +23,9 @@ public class Fornecedor extends Pessoa implements Serializable{
 	private long id;
 	private String password;
 	
-	@JsonIgnore
+	/*@JsonIgnore
 	@OneToMany(mappedBy = "fornecedo")
-	private List<Compra> compras = new ArrayList<Compra>();
+	private List<Compra> compras = new ArrayList<Compra>();*/
 	
 	public Fornecedor(){		
 	}
@@ -51,9 +51,9 @@ public class Fornecedor extends Pessoa implements Serializable{
 	}
 
 
-	public List<Compra> getCompras() {
+	/*public List<Compra> getCompras() {
 		return compras;
-	}
+	}*/
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;

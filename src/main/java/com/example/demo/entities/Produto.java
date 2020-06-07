@@ -33,8 +33,8 @@ public class Produto implements Serializable {
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemVenda> itemsv = new HashSet<>();
 
-	@OneToMany(mappedBy = "id.produto")
-	private Set<ItemCompra> itemsc = new HashSet<>();
+	/*@OneToMany(mappedBy = "id.produto")
+	private Set<ItemCompra> itemsc = new HashSet<>();*/
 
 	public Produto() {
 		super();
@@ -96,7 +96,7 @@ public class Produto implements Serializable {
 		return set;
 
 	}
-	@JsonIgnore
+	/*@JsonIgnore
 	public Set<Compra> getCompras() {
 		Set<Compra> set = new HashSet<>();
 		for (ItemCompra x : itemsc) {
@@ -104,7 +104,7 @@ public class Produto implements Serializable {
 		}
 		return set;
 
-	}
+	}*/
 
 	@Override
 	public int hashCode() {
