@@ -10,16 +10,24 @@ import org.springframework.context.annotation.Profile;
 
 import com.example.demo.entities.Categoria;
 import com.example.demo.entities.Cliente;
+import com.example.demo.entities.Compra;
 import com.example.demo.entities.Fornecedor;
 import com.example.demo.entities.Funcionario;
+import com.example.demo.entities.ItemCompra;
+import com.example.demo.entities.ItemVenda;
+import com.example.demo.entities.Pagamento;
+import com.example.demo.entities.PagamentoC;
 import com.example.demo.entities.Produto;
 import com.example.demo.entities.Testeee;
 import com.example.demo.entities.Venda;
+import com.example.demo.entities.enums.StatusCompra;
 import com.example.demo.entities.enums.StatusVenda;
 import com.example.demo.repositories.CategoriaRepository;
 import com.example.demo.repositories.ClienteRepository;
+import com.example.demo.repositories.CompraRepository;
 import com.example.demo.repositories.FornecedorRepository;
 import com.example.demo.repositories.FuncionarioRepository;
+import com.example.demo.repositories.ItemCompraRepository;
 import com.example.demo.repositories.ItemVendaRepository;
 import com.example.demo.repositories.ProdutoRepository;
 import com.example.demo.repositories.TesteeeRepository;
@@ -41,8 +49,8 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private VendaRepository vendaRepository;
 
-	//1@Autowired
-	//1private CompraRepository compraRepository;
+	@Autowired
+	private CompraRepository compraRepository;
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -56,8 +64,8 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	//1@Autowired
-	//1private ItemCompraRepository itemCompraRepository;
+	@Autowired
+	private ItemCompraRepository itemCompraRepository;
 
 	@Autowired
 	private ItemVendaRepository itemVendaRepository;
@@ -89,12 +97,12 @@ public class TestConfig implements CommandLineRunner {
 		Funcionario fu3 = new Funcionario(0L, "bela", 0L, "izabela", "izabela@hotmail.com", "3126548", "xablau", 
 				"321654");
 		
-		/*Compra c1 = new Compra(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusCompra.ENTREGE, f1, fu2);
-		Compra c2 = new Compra(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusCompra.AGUARDANDO_ENVIO, f2, fu2);
+		Compra c1 = new Compra(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusCompra.ENTREGE, f1, fu2);
+		Compra c2 = new Compra(0L, Instant.parse("2019-08-20T19:53:07Z"), StatusCompra.AGUARDANDO_ENVIO, f2, fu2);
 		Compra c3 = new Compra(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusCompra.ENTREGE, f3, fu3);
-		Compra c4 = new Compra(0L, Instant.parse("2019-08-20T19:53:07Z"), StatusCompra.ENTREGE, u3, fu1);
-		Compra c5 = new Compra(0L, Instant.parse("2019-11-21T03:42:10Z"), StatusCompra.AGUARDANDO_ENVIO, u2, fu1);
-		Compra c6 = new Compra(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusCompra.AGUARDANDO_ENVIO, u1, fu1);*/		
+		//Compra c4 = new Compra(0L, Instant.parse("2019-08-20T19:53:07Z"), StatusCompra.ENTREGE, u3, fu1);
+		//Compra c5 = new Compra(0L, Instant.parse("2019-11-21T03:42:10Z"), StatusCompra.AGUARDANDO_ENVIO, u2, fu1);
+		//Compra c6 = new Compra(0L, Instant.parse("2019-07-22T15:21:22Z"), StatusCompra.AGUARDANDO_ENVIO, u1, fu1);		
 				
 		Venda v1 = new Venda(0L, Instant.parse("2019-06-20T19:53:07Z"), StatusVenda.ENTREGE, u1, fu1);
 		Venda v2 = new Venda(0L, Instant.parse("2019-07-21T03:42:10Z"), StatusVenda.AGUARDANDO_ENVIO, u2, fu1);
@@ -118,7 +126,7 @@ public class TestConfig implements CommandLineRunner {
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		vendaRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6));
 		fornecedorRepository.saveAll(Arrays.asList(f1, f2, f3));
-		//compraRepository.saveAll(Arrays.asList(c1, c2, c3));
+		compraRepository.saveAll(Arrays.asList(c1, c2, c3));
 		funcionarioRepository.saveAll(Arrays.asList(fu1, fu2, fu3));
 		
 		/*Local l1 = new Local(0L, "RUA CINCO", "VILA AZENHA", "NOVA ODESSA", "SÃO PAULO", null, 40, 45464564654L, u1);
@@ -140,10 +148,10 @@ public class TestConfig implements CommandLineRunner {
 		
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));		
 
-		/*ItemCompra ic1 = new ItemCompra(c1, p1, 2, p1.getVcompra());
+		ItemCompra ic1 = new ItemCompra(c1, p1, 2, p1.getVcompra());
 		ItemCompra ic2 = new ItemCompra(c1, p3, 1, p3.getVcompra());
 		ItemCompra ic3 = new ItemCompra(c2, p3, 5, p3.getVcompra());
-		ItemCompra ic4 = new ItemCompra(c3, p5, 2, p5.getVcompra());/*
+		ItemCompra ic4 = new ItemCompra(c3, p5, 2, p5.getVcompra());
 		
 		ItemVenda iv1 = new ItemVenda(v1, p1, 3, p1.getVvenda());
 		ItemVenda iv2 = new ItemVenda(v1, p3, 9, p3.getVvenda());
@@ -160,15 +168,15 @@ public class TestConfig implements CommandLineRunner {
 		v4.setPagamento(pai2);
 		v3.setPagamento(pai3);
 															
-		/*PagamentoC paic1 = new PagamentoC(0L, Instant.parse("2020-06-20T30:53:07Z"), c1);
-		PagamentoC paic2 = new PagamentoC(0L, Instant.parse("2020-08-23T16:53:07Z"), c3);
-		PagamentoC paic3 = new PagamentoC(0L, Instant.parse("2020-07-22T10:21:22Z"), c2);
+		PagamentoC paic1 = new PagamentoC(0L, Instant.parse("2019-06-20T21:53:07Z"), c1);
+		PagamentoC paic2 = new PagamentoC(0L, Instant.parse("2019-08-20T20:53:07Z"), c3);
+		PagamentoC paic3 = new PagamentoC(0L, Instant.parse("2019-07-22T16:21:22Z"), c2);
 		c1.setPagamentoC(paic1);
 		c2.setPagamentoC(paic2);
 		c3.setPagamentoC(paic3);
-		*/
+		
 		vendaRepository.saveAll(Arrays.asList(v1, v3, v4));
-		//compraRepository.saveAll(Arrays.asList(c1, c2, c3));
+		compraRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
 	}
 

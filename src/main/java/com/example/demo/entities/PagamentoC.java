@@ -1,4 +1,4 @@
-/*package com.example.demo.entities;
+package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tb_pagamento")
+@Table(name = "tb_pagamentoc")
 public class PagamentoC implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -88,4 +88,3 @@ public class PagamentoC implements Serializable {
 	}
 	
 }
-*/

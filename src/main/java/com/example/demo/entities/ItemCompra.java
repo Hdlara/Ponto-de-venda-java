@@ -1,4 +1,4 @@
-/*package com.example.demo.entities;
+package com.example.demo.entities;
 
 import java.io.Serializable;
 
@@ -93,4 +93,3 @@ public class ItemCompra implements Serializable {
 	
 	
 }
-*/

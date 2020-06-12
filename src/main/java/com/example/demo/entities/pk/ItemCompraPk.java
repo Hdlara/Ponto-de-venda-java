@@ -1,4 +1,4 @@
-/*package com.example.demo.entities.pk;
+package com.example.demo.entities.pk;
 
 import java.io.Serializable;
 
@@ -70,4 +70,3 @@ public class ItemCompraPk implements Serializable {
 	
 	
 }
-*/

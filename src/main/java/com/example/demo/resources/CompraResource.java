@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entities.Fornecedor;
-import com.example.demo.services.FornecedorService;
+import com.example.demo.entities.Compra;
+import com.example.demo.services.CompraService;
 
 @RestController
 @RequestMapping(value = "/compras")
 public class CompraResource {
 	
 	@Autowired
-	private FornecedorService service; 
+	private CompraService service; 
 	
 	@GetMapping
-	public ResponseEntity<List<Fornecedor>> findall(){
-		List<Fornecedor> list = service.findAll();
+	public ResponseEntity<List<Compra>> findall(){
+		List<Compra> list = service.findAll();
 
 		return ResponseEntity.ok().body(list);
 	
 	
 	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Fornecedor> findById(@PathVariable long id){
-		Fornecedor obj = service.findById(id);
+	public ResponseEntity<Compra> findById(@PathVariable long id){
+		Compra obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
